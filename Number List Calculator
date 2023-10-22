@@ -1,0 +1,37 @@
+# Создаем пустой список
+numbers = []
+
+while True:
+    print("\nВыберите действие:")
+    print("1. Добавить число(а)")
+    print("2. Посмотреть сумму чисел")
+    print("3. Посмотреть среднее значение")
+    print("4. Выйти")
+
+    choice = input("Введите номер выбранного действия: ")
+
+    if choice == '1':
+        try:
+            # Пользователь вводит числа через пробел и мы разделяем их и добавляем в список
+            input_numbers = input("Введите числа через пробел: ")
+            numbers.extend(map(float, input_numbers.split()))
+            print(f"Числа {input_numbers} добавлены в список.")
+        except ValueError:
+            print("Ошибка: введите корректные числа, разделенные пробелами.")
+    elif choice == '2':
+        if numbers:
+            total_sum = sum(numbers)
+            print(f"Сумма чисел в списке: {total_sum}")
+        else:
+            print("Список пуст. Добавьте числа.")
+    elif choice == '3':
+        if numbers:
+            average = sum(numbers) / len(numbers)
+            print(f"Среднее значение чисел в списке: {average}")
+        else:
+            print("Список пуст. Добавьте числа.")
+    elif choice == '4':
+        print("Выход из программы. До свидания!")
+        break
+    else:
+        print("Некорректный выбор. Пожалуйста, попробуйте снова.")

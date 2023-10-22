@@ -1,0 +1,79 @@
+# Создание пустого списка
+my_list = []
+
+while True:
+    print("\nВыберите действие:")
+    print("1. Добавить элементы через пробел")
+    print("2. Изменить элемент")
+    print("3. Удалить элемент")
+    print("4. Проверить наличие элемента")
+    print("5. Вывести длину списка")
+    print("6. Перебрать элементы списка")
+    print("7. Вычислить сумму элементов")
+    print("8. Вычислить среднее значение")
+    print("9. Все элементы списка")
+    print("10. Выйти")
+
+    choice = input("Введите номер выбранного действия: ")
+
+    if choice == '1':
+        elements_input = input("Введите элементы через пробел: ")
+        # Разделяем введенную строку на числа и добавляем их в список
+        numbers_list = [float(number) for number in elements_input.split()]
+        my_list.extend(numbers_list)  # Расширяем список новыми элементами
+        print("Элементы добавлены в список.")
+    elif choice == '2':
+        if my_list:
+            print("Текущий список:", my_list)
+            index = int(input("Введите индекс элемента для изменения: "))
+            if 0 <= index < len(my_list):
+                new_element = input("Введите новый элемент: ")
+                my_list[index] = float(new_element)  # Преобразуем введенный элемент в число и заменяем старый элемент
+                print(f"Элемент в позиции {index} изменен на '{new_element}'.")
+            else:
+                print("Некорректный индекс.")
+        else:
+            print("Список пуст. Добавьте элементы.")
+    elif choice == '3':
+        if my_list:
+            print("Текущий список:", my_list)
+            element_to_remove = input("Введите элемент для удаления: ")
+            if element_to_remove.isdigit() and float(element_to_remove) in my_list:
+                my_list.remove(float(element_to_remove))  # Преобразуем введенный элемент в число и удаляем его из списка
+                print(f"Элемент '{element_to_remove}' удален из списка.")
+            else:
+                print(f"Элемент '{element_to_remove}' не найден в списке.")
+        else:
+            print("Список пуст. Добавьте элементы.")
+    elif choice == '4':
+        element_to_check = input("Введите элемент для проверки наличия в списке: ")
+        if element_to_check.isdigit() and float(element_to_check) in my_list:
+            print(f"Элемент '{element_to_check}' найден в списке.")
+        else:
+            print(f"Элемент '{element_to_check}' не найден в списке.")
+    elif choice == '5':
+        print(f"Длина списка: {len(my_list)}")
+    elif choice == '6':
+        print("Элементы списка:")
+        for item in my_list:
+            print(item)
+    elif choice == '7':
+        # Вычисляем и выводим сумму элементов
+        total = sum(my_list)
+        print(f"Сумма элементов списка: {total}")
+    elif choice == '8':
+        # Вычисляем и выводим среднее значение элементов
+        if my_list:
+            average = sum(my_list) / len(my_list)
+            print(f"Среднее значение элементов списка: {average}")
+        else:
+            print("Список пуст.")
+    elif choice == '9':
+        # Выводим все элементы списка на одной строке
+        print("Все элементы списка:")
+        print(' '.join(map(str, my_list)))
+    elif choice == '10':
+        print("Выход из программы. До свидания!")
+        break
+    else:
+        print("Некорректный выбор. Пожалуйста, попробуйте снова.")
